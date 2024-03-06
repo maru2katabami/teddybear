@@ -30,7 +30,7 @@ const Controls = () => {
           <div className="m-[2px] size-10 rounded-3xl border-2 hover:border-indigo-500" style={{ background: bg( shoots ? "/img/ball.png" :"/img/bounce.png")}} onClick={ setShoots }/>
           </>: null
           }
-          <div className="m-[2px] px-2 w-24 h-10 rounded-3xl border-2 flex justify-center items-center text-xs" onClick={ handleStart }>{ start ? formatTime( Date.now()):"redeay ?"}</div>
+          <div className="m-[2px] px-2 w-24 h-10 rounded-3xl border-2 flex justify-center items-center text-xs" onClick={ handleStart }>{ start ? formatTime( Date.now()):"ready ?"}</div>
           <div className="m-[2px] size-10 rounded-3xl border-2 hover:border-indigo-500" style={{ background: bg("/img/google.png")}}/>
         </div> 
       </div>
