@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* { @apply truncate outline-none }
+* { @apply truncate outline-none select-none }
 
 html, body, main { @apply relative w-full h-full }
