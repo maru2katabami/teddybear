@@ -1,8 +1,11 @@
 import React, { useMemo } from "react"
 import { useSpring, a } from "@react-spring/three"
+import { useZustand } from "@/lib/zustand"
 
 const PointLights = () => {
   
+  const { target } = useZustand()
+
   const random = useMemo(() => {
     const points = []
     for (let i = 0; i < 10; i++ ) {
@@ -31,7 +34,7 @@ const PointLights = () => {
   })
 
   return ( 
-    <a.group rotation={ rotation }>
+    <a.group position={ target } rotation={ rotation }>
       { random.map(( p, index ) => (
         <pointLight key={ index } position={ p.position } intensity={ 100 } color={ p.color }/>
       ))}
