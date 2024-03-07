@@ -4,23 +4,15 @@ import { useBox, usePlane } from "@react-three/cannon"
 import * as THREE from "three"
 import { useZustand } from "@/lib/zustand"
 
-const Plane = ({ args, position, rotation }) => {
-
-  const [ ref, api ] = usePlane(() => ({ type: "Static", args: args, position: position, rotation: rotation }), useRef())
-
-  return (
-    <mesh ref={ ref }>
-      <planeGeometry args={ args }/>
-      <meshNormalMaterial transparent opacity={ 0.1 }/>
-    </mesh>
-  )
-}
-
-const Floor = ({ args, position }) => {
+const Cube = ({ args, position }) => {
 
   const { target, shoots, setImpulse } = useZustand()
 
-  const [ ref, api ] = useBox(() => ({ type: "Static", args: args, position: [ position[0], position[1] - 0.5, position[2]]}), useRef())
+  const [ ref, api ] = useBox(() => ({
+    type: "Static",
+    args: args,
+    position: [ position[0], position[1] - 2.5, position[2]]
+  }), useRef())
 
   const materialRef = useRef()
 
@@ -43,7 +35,9 @@ const Floor = ({ args, position }) => {
     }
   }
 
-  const handleUp = () => {
+
+  const handleUp = e => {
+    setPoint( e.intersections[0].uv )
     if( Math.floor( target[1]) === position[1] && !shoots && press ) {
       setPress( false )
       const force = Math.min(( Date.now() - delta ) / 200, 20 )
@@ -111,17 +105,24 @@ const Floor = ({ args, position }) => {
 const WallandFloor = () => {
 
   const floor = []
-  for( let i = 1; i < 200; i++ ) { floor.push({ id: i, position: [( i * 3 % 11 ) - 5, 6 * i, ( i * 7 % 11 ) - 5 ]})}
+
+  for( let i = 1; i < 200; i++ ) {
+    floor.push({
+      id: i,
+      position: [
+        ( Math.round( Math.sin( i ) * 5 ) + 5 ) % 11 - 5,
+        5 * i,
+        ( Math.round( Math.cos( i ) * 5 ) + 5 ) % 11 - 5 ]
+    })
+  }
 
   return (
     <group>
-      <Plane args={[ 20, 1000 ]} position={[ 0, 500, -10 ]} rotation={[ 0, 0, 0 ]}/>
-      <Plane args={[ 20, 1000 ]} position={[ 0, 500, 10 ]} rotation={[ 0, Math.PI, 0 ]}/>
-      <Plane args={[ 20, 1000 ]} position={[ -10, 500, 0 ]} rotation={[ 0, Math.PI/2, 0 ]}/>
-      <Plane args={[ 20, 1000 ]} position={[ 10, 500, 0 ]} rotation={[ 0, -Math.PI/2, 0 ]}/>
-      <Floor args={[ 20, 1, 20 ]} position={[ 0, 0, 0 ]}/>
+      <Cube args={[ 20, 5, 20 ]} position={[ 0, 0, 0 ]}/>
       { floor.map(( item ) => (
-      <Floor key={ item.id } args={[ 5, 1, 5 ]} position={ item.position }/>
+      item.id <= 51 ?
+      <Cube key={ item.id } args={[ 5, 5 - ( 5 * ( 0.015 * item.id )), 5 ]} position={ item.position }/>:
+      null
       ))}
     </group>
   )

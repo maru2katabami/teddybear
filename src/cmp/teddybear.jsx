@@ -6,13 +6,13 @@ import { useConeTwistConstraint, useSphere } from "@react-three/cannon"
 
 const TeddyBear = () => {
 
-  const { start, setTarget, impulse } = useZustand()
+  const { start, setStart, target, setTarget, impulse } = useZustand()
 
   const { camera } = useThree()
 
   const { nodes } = useGLTF("/glb/teddybear.glb")
 
-  const param = { mass: 0.1, position: [ 0, 2, 0 ], solver: { tolerance: 0.01, iterations: 5 }}
+  const param = { mass: 0.1, position: [ -5, 2.3, 0 ], solver: { tolerance: 0.01, iterations: 5 }}
 
   const [ body, api ] = useSphere(() => ({ ...param, args: [ 0.35 ]}), useRef())
   const [ head, api1 ] = useSphere(() => ({ ...param, args: [ 0.35 ]}), useRef())
@@ -46,13 +46,17 @@ const TeddyBear = () => {
   const apis = [ api, api1, api2, api3, api4, api5, api6, api7, api8, api9, api10, api11, api12 ]
 
   useEffect(() => {
+    if( target <= -100 ) setStart( null )
+  }, [ target ])
+
+  useEffect(() => {
     api.position.subscribe( position => setTarget( position ))
     api.angularVelocity.set( 0, 0, 0 )
     api.velocity.set( 0, 0, 0 )
     api.rotation.set( 0, 0, 0 )
-    apis.map( item => { item.position.set( 0, 2, 0 )})
+    apis.map( item => { item.position.set( -5, 2.3, 0 )})
     start ? api.mass.set( 0.1 ): api.mass.set( 0 )
-    camera.position.set( 0, 2, 3 )
+    camera.position.set( -5, 3, 3 )
   }, [ start ])
 
   useEffect(() => {
