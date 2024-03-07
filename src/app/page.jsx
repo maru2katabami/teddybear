@@ -28,14 +28,14 @@ const Page = () => {
   return (
     <main>
       <Canvas onPointerUp={ handleBall }>
-        <OrbitControls target={ target } minPolarAngle={ Math.PI/2 * 0.05 } maxPolarAngle={ Math.PI/2 * 0.95 }/>
+        <OrbitControls target={ target } minPolarAngle={ Math.PI/2 * 0.35 } maxPolarAngle={ Math.PI/2 * 0.95 }/>
         <PointLights/>
         <Physics gravity={[ 0, -9.82, 0 ]}>
-          <Debug>
+          {/* <Debug> */}
           <WallandFloor/>
           <SwingChair/>
           <TeddyBear/>
-          </Debug>
+          {/* </Debug> */}
           { balls.map(( item ) => (
             <Ball key={ item.id } x={ item.x } y={ item.y }/>
           ))}

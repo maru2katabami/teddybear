@@ -46,22 +46,18 @@ const TeddyBear = () => {
   const apis = [ api, api1, api2, api3, api4, api5, api6, api7, api8, api9, api10, api11, api12 ]
 
   useEffect(() => {
-    if( target <= -100 ) setStart( null )
-  }, [ target ])
-
-  useEffect(() => {
     api.position.subscribe( position => setTarget( position ))
     api.angularVelocity.set( 0, 0, 0 )
     api.velocity.set( 0, 0, 0 )
     api.rotation.set( 0, 0, 0 )
     apis.map( item => { item.position.set( -5, 2.3, 0 )})
     start ? api.mass.set( 0.1 ): api.mass.set( 0 )
-    camera.position.set( -5, 3, 3 )
+    camera.position.set( -5, 3, 5 )
   }, [ start ])
 
-  useEffect(() => {
-    api.applyImpulse( impulse, [ 0, 0, 0 ])
-  }, [ impulse ])
+  useEffect(() => { if( target[1] < -10 ) setStart( null )}, [ target ])
+
+  useEffect(() => api.applyImpulse( impulse, [ 0, 0, 0 ]), [ impulse ])
 
   return (
     <group>

@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
-import { useBox, useConeTwistConstraint, usePlane, useTrimesh } from "@react-three/cannon"
+import { useBox, useConeTwistConstraint, useTrimesh } from "@react-three/cannon"
 
 const SwingChair = () => {
 
