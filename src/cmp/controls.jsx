@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useZustand } from "@/lib/zustand"
 
 const Controls = () => {
@@ -22,7 +22,7 @@ const Controls = () => {
 
   return (
     <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": "pointer-events-auto"}`}>
-      <div className="text-6xl text-black/30 select-none">{ start ? Math.floor( target[1]): "Ready ?"}</div>
+      <div className="text-8xl text-black/40 select-none">{ start ? Math.floor( target[1]): "Ready?"}</div>
       <div className="absolute bottom-0 p-5 w-full flex justify-center items-center">
         <div className="max-w-[500px] rounded-3xl border-2 bg-white flex justify-between items-center pointer-events-auto">
           { start ?

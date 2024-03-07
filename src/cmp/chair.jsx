@@ -2,7 +2,7 @@ import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
 import { useBox, useConeTwistConstraint, useTrimesh } from "@react-three/cannon"
 
-const SwingChair = () => {
+const Chair = () => {
 
   const { nodes } = useGLTF("/glb/swingchair.glb")
 
@@ -28,4 +28,4 @@ const SwingChair = () => {
   )
 }
 
-export default SwingChair
+export default Chair

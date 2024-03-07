@@ -2,7 +2,7 @@ import React, { useMemo } from "react"
 import { useSpring, a } from "@react-spring/three"
 import { useZustand } from "@/lib/zustand"
 
-const PointLights = () => {
+const Lights = () => {
   
   const { target } = useZustand()
 
@@ -42,4 +42,4 @@ const PointLights = () => {
   )
 }
 
-export default PointLights
+export default Lights

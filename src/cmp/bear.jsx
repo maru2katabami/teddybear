@@ -4,7 +4,7 @@ import { useThree } from "@react-three/fiber"
 import { useGLTF } from "@react-three/drei"
 import { useConeTwistConstraint, useSphere } from "@react-three/cannon"
 
-const TeddyBear = () => {
+const Bear = () => {
 
   const { start, setStart, target, setTarget, impulse } = useZustand()
 
@@ -74,4 +74,4 @@ const TeddyBear = () => {
   )
 }
 
-export default TeddyBear
+export default Bear

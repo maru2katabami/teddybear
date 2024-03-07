@@ -5,11 +5,11 @@ import { useZustand } from "@/lib/zustand"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
 import { Debug, Physics } from "@react-three/cannon"
-import PointLights from "@/cmp/pointlights"
-import WallandFloor from "@/cmp/wall&floor"
-import SwingChair from "@/cmp/swingchair"
-import TeddyBear from "@/cmp/teddybear"
+import Lights from "@/cmp/lights"
 import Ball from "@/cmp/ball"
+import Floor from "@/cmp/floor"
+import Chair from "@/cmp/chair"
+import Bear from "@/cmp/bear"
 import Controls from "@/cmp/controls"
 
 const Page = () => {
@@ -29,16 +29,16 @@ const Page = () => {
     <main>
       <Canvas onPointerUp={ handleBall }>
         <OrbitControls target={ target } minPolarAngle={ Math.PI/2 * 0.35 } maxPolarAngle={ Math.PI/2 * 0.95 }/>
-        <PointLights/>
+        <Lights/>
         <Physics gravity={[ 0, -9.82, 0 ]}>
-          {/* <Debug> */}
-          <WallandFloor/>
-          <SwingChair/>
-          <TeddyBear/>
-          {/* </Debug> */}
+<Debug>
           { balls.map(( item ) => (
             <Ball key={ item.id } x={ item.x } y={ item.y }/>
           ))}
+          <Floor/>
+          <Chair/>
+          <Bear/>
+</Debug>
         </Physics>
       </Canvas>
       <Controls/>

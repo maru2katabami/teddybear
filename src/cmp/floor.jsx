@@ -96,7 +96,7 @@ const Cube = ({ args, position }) => {
   )
 }
 
-const WallandFloor = () => {
+const Floor = () => {
 
   const floor = [{ id: 0, args: [ 20, 5, 20 ], position: [ 0, 0, 0]}]
 
@@ -120,4 +120,4 @@ const WallandFloor = () => {
   )
 }
 
-export default WallandFloor
+export default Floor
