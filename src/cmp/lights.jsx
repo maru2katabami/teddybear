@@ -36,7 +36,7 @@ const Lights = () => {
   return ( 
     <a.group position={ target } rotation={ rotation }>
       { random.map(( p, index ) => (
-        <pointLight key={ index } position={ p.position } intensity={ 100 } color={ p.color }/>
+        <pointLight key={ index } position={ p.position } intensity={ 200 } color={ p.color }/>
       ))}
     </a.group>
   )
