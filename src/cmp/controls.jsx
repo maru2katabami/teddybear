@@ -5,7 +5,7 @@ const Controls = () => {
 
   const { start, setStart, target, shoots, setShoots } = useZustand()
 
-  const bg = ( url ) => `#FFF url(${ url }) no-repeat center center /100%`
+  const bg = ( url ) => `#FFF url(${ url }) no-repeat center center / 100%`
 
   const formatTime = ( millisecond ) => {
     const seconds = Math.floor(( millisecond - start ) / 1000 )
@@ -20,18 +20,28 @@ const Controls = () => {
 
   const handleStart = () => setStart( start ? null: Date.now())
 
+  const handleRec = () => {
+  }
+
   return (
     <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": "pointer-events-auto"}`}>
+      <div className="absolute top-0 p-5 w-full flex justify-center items-center">
+        <div className="max-w-[500px] rounded-3xl border-2 bg-white flex justify-between items-center">
+          <div className="m-[2px] size-10 rounded-3xl border-2 bg-black"/>
+          <div className="m-[2px] size-10 rounded-3xl border-2 bg-black"/>
+          <div className="m-[2px] size-10 rounded-3xl border-2 bg-black"/>
+        </div>
+      </div>
       <div className="text-8xl text-black/40 select-none">{ start ? Math.floor( target[1]): "Ready?"}</div>
       <div className="absolute bottom-0 p-5 w-full flex justify-center items-center">
         <div className="max-w-[500px] rounded-3xl border-2 bg-white flex justify-between items-center pointer-events-auto">
           { start ?
           <>
-          <div className="m-[2px] size-10 rounded-3xl border-2 hover:border-indigo-500" style={{ background: bg( shoots ? "/img/ball.png" :"/img/bounce.png")}} onClick={ setShoots }/>
+          <div className="m-[2px] size-10 rounded-3xl border-2" style={{ background: bg( shoots ? "/img/ball.png" :"/img/bounce.png")}} onClick={ setShoots }/>
           </>: null
           }
-          <div className="m-[2px] px-2 w-24 h-10 rounded-3xl border-2 flex justify-center items-center text-xs" onClick={ handleStart }>{ start ? formatTime( Date.now()):"start"}</div>
-          <div className="m-[2px] size-10 rounded-3xl border-2 hover:border-indigo-500" style={{ background: bg("/img/google.png")}}/>
+          <div className="m-[2px] px-2 w-24 h-10 rounded-3xl border-2 flex justify-center items-center text-xs" onClick={ handleStart }>{ start ? formatTime( Date.now()): "start"}</div>
+          <div className="m-[2px] size-10 rounded-3xl border-2" style={{ background: bg("/img/tiktok.png")}} onClick={ handleRec }/>
         </div> 
       </div>
     </div>
