@@ -11,7 +11,7 @@ const Cube = ({ args, position }) => {
   const [ ref, api ] = useBox(() => ({
     type: "Static",
     args: args,
-    position: [ position[0], position[1] + 2.5, position[2]]
+    position: position
   }), useRef())
 
   const materialRef = useRef()
@@ -22,7 +22,7 @@ const Cube = ({ args, position }) => {
   const [ delta, setDelta ] = useState( 0 )
 
   const handleDown = e => {
-    if( Math.floor( target[1]) === position[1] && !shoots ) {
+    if( Math.round( target[1]) === Math.round( position[1]) && !shoots ) {
       setPress( true )
       setDelta( Date.now())
       setPoint( e.intersections[0].uv )
@@ -30,14 +30,14 @@ const Cube = ({ args, position }) => {
   }
 
   const handleMove = e => {
-    if( Math.floor( target[1]) === position[1] + 2.5 && !shoots && press ) {
+    if( Math.round( target[1]) === Math.round( position[1]) && !shoots && press ) {
       setPoint( e.intersections[0].uv )
     }
   }
 
   const handleUp = e => {
     setPress( false )
-    if( Math.floor( target[1]) === position[1] + 2.5 && !shoots && radius >= 0.1 && e.type === "pointerup") {
+    if( Math.round( target[1]) === Math.round( position[1]) && !shoots && radius >= 0.1 && e.type === "pointerup") {
       const force = Math.min(( Date.now() - delta ) / 200, 20 )
       const distance = {
         x: (( target[0] - position[0]) / args[0]) - ( point.x - 0.5 ),
@@ -106,7 +106,7 @@ const Floor = () => {
       args: [ 5, 5 - ( 5 * ( 0.02 * i )), 5 ],
       position: [
         ( Math.round( Math.sin( i ) * 5 ) + 5 ) % 11 - 5,
-        5 * i - 2.5,
+        5 * i - ( 5 - ( 5 * ( 0.02 * i ))),
         ( Math.round( Math.cos( i ) * 5 ) + 5 ) % 11 - 5 ]
     })
   }
