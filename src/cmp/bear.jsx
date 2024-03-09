@@ -50,7 +50,7 @@ const Bear = () => {
     api1.angularVelocity.set( 0, 0, 0 )
     api1.velocity.set( 0, 0, 0 )
     api1.rotation.set( 0, 0, 0 )
-    apis.map( item => { item.position.set( -5, 2.3, 0 )})
+    apis.map( item => { item.position.set( -5, 255.3, 0 )})
     start ? api1.mass.set( 0.1 ): api1.mass.set( 0 )
     camera.position.set( -5, 3, 5 )
   }, [ start ])
