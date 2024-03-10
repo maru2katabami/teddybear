@@ -24,12 +24,11 @@ const Controls = () => {
   }
 
   return (
-    <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": "pointer-events-auto"}`}>
-      <div className="text-8xl text-black/40 select-none">{ start ? Math.floor( target[1]): "Ready?"}</div>
+    <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": " bg-white/40 pointer-events-auto"}`}>
+      <div className={`text-8xl ${ start ? "text-black/40": "text-black"}`}>{ start ? Math.floor( target[1]): "Ready?"}</div>
       <div className="absolute bottom-0 p-5 w-full flex justify-center items-center">
         <div className="max-w-[500px] rounded-3xl border-2 bg-white flex justify-between items-center pointer-events-auto">
           { start ?
-          
           <div className="m-[2px] size-10 rounded-3xl border-2" style={{ background: bg( shoots ? "/img/ball.png" :"/img/bounce.png")}} onClick={ setShoots }/>:
           <div className="m-[2px] size-10 rounded-3xl border-2" style={{ background: bg("/img/ranking.png")}}/>
           }
