@@ -11,7 +11,7 @@ const Cube = ({ args, position }) => {
   const [ ref, api ] = useBox(() => ({
     type: "Static",
     args: args,
-    position: position
+    position: [ position[0], position[1] - ( args[1]/2 ), position[2]]
   }), useRef())
 
   const materialRef = useRef()
@@ -98,7 +98,7 @@ const Cube = ({ args, position }) => {
 
 const Floor = () => {
 
-  const floor = [{ id: 0, args: [ 20, 5, 20 ], position: [ 0, -2.5, 0]}]
+  const floor = [{ id: 0, args: [ 20, 5, 20 ], position: [ 0, 0, 0]}]
 
   for( let i = 1; i < 50; i++ ) {
     floor.push({
@@ -106,7 +106,7 @@ const Floor = () => {
       args: [ 5, 5 - ( 5 * ( 0.02 * i )), 5 ],
       position: [
         ( Math.round( Math.sin( i ) * 5 ) + 5 ) % 11 - 5,
-        5 * i - ( 5 - ( 5 * ( 0.02 * i ))),
+        5 * i,
         ( Math.round( Math.cos( i ) * 5 ) + 5 ) % 11 - 5 ]
     })
   }
