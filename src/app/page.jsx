@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { Suspense, useEffect } from "react"
 import { useZustand } from "@/lib/zustand"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls } from "@react-three/drei"
@@ -27,24 +27,26 @@ const Page = () => {
   useEffect(() => setBalls([]), [ shoots ])
 
   return (
-    <main>
-      <Canvas onPointerUp={ handleBall }>
-        <OrbitControls target={ target } minPolarAngle={ Math.PI/2 * 0.35 } maxPolarAngle={ Math.PI/2 * 0.95 }/>
-        <Lights/>
-        <Physics gravity={[ 0, -9.82, 0 ]}>
+    <Suspense fallback={<div className="w-full h-full" style={{ background: `#FFF url(/img/loading.gif) no-repeat center center /auto 100%`}}/>}>
+      <main>
+        <Canvas onPointerUp={ handleBall }>
+          <OrbitControls target={ target } minPolarAngle={ Math.PI/2 * 0.35 } maxPolarAngle={ Math.PI/2 * 0.95 }/>
+          <Lights/>
+          <Physics gravity={[ 0, -9.82, 0 ]}>
 {/* <Debug> */}
-          { balls.map(( item ) => (
-            <Ball key={ item.id } x={ item.x } y={ item.y }/>
-          ))}
-          <Floor/>
-          <Chair/>
-          <Bear/>
+            { balls.map(( item ) => (
+              <Ball key={ item.id } x={ item.x } y={ item.y }/>
+            ))}
+            <Floor/>
+            <Chair/>
+            <Bear/>
 {/* </Debug> */}
-        </Physics>
-      </Canvas>
-      <Controls/>
-      <AdBlock/>
-    </main>
+          </Physics>
+        </Canvas>
+        <Controls/>
+        <AdBlock/>
+      </main>
+    </Suspense>
   )
 }
 
