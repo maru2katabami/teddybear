@@ -11,6 +11,7 @@ import Floor from "@/cmp/floor"
 import Chair from "@/cmp/chair"
 import Bear from "@/cmp/bear"
 import Controls from "@/cmp/controls"
+import AdBlock from "@/cmp/adblock"
 
 const Page = () => {
 
@@ -42,6 +43,7 @@ const Page = () => {
         </Physics>
       </Canvas>
       <Controls/>
+      <AdBlock/>
     </main>
   )
 }
