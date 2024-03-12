@@ -27,7 +27,7 @@ const Controls = () => {
   }
 
   return (
-    <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": " bg-white/40 pointer-events-auto"}`}>
+    <div className={`absolute top-0 w-full h-full flex justify-center items-center ${ start ? "pointer-events-none": "bg-white/40 pointer-events-auto"}`}>
       <div className={`text-7xl ${ start ? "text-black/40": "text-black"}`}>{ start ? Math.floor( target[1]): "Ready?"}</div>
       <div className="absolute bottom-0 p-5 w-full flex justify-center items-center">
         <div className="max-w-[500px] rounded-3xl border-2 bg-white flex justify-between items-center pointer-events-auto">

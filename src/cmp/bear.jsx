@@ -12,7 +12,7 @@ const Bear = () => {
 
   const { nodes } = useGLTF("/glb/teddybear.glb")
 
-  const param = { mass: 0.1, position: [ -5, 2.3, 0 ], solver: { tolerance: 0.01, iterations: 5 }}
+  const param = { mass: 0.1, solver: { tolerance: 0.01, iterations: 5 }}
 
   const [ body, api ] = useSphere(() => ({ ...param, args: [ 0.38 ]}), useRef())
   const [ head, api1 ] = useSphere(() => ({ ...param, args: [ 0.40 ]}), useRef())
@@ -50,9 +50,9 @@ const Bear = () => {
     api1.angularVelocity.set( 0, 0, 0 )
     api1.velocity.set( 0, 0, 0 )
     api1.rotation.set( 0, 0, 0 )
-    apis.map( item => { item.position.set( -5, 2, 0 )})
+    apis.map( item => { item.position.set( 0, 2, 0 )})
     start ? api1.mass.set( 0.1 ): api1.mass.set( 0 )
-    camera.position.set( -5, 3, 5 )
+    camera.position.set( 0, 2, 3 )
   }, [ start ])
 
   useEffect(() => { if( target[1] < -10 ) setStart( null )}, [ target ])
