@@ -4,8 +4,8 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "maru2katabami",
-    "short_name": "maru2katabami",
+    "name": "teddy bear",
+    "short_name": "teddy bear",
     "icons": [
         {
             "src": "/manifest/icon-192x192.png",
