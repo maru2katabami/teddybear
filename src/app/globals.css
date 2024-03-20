@@ -4,4 +4,6 @@
 
 * { @apply truncate outline-none select-none }
 
-html, body, main { @apply relative w-full h-full }
+html, body, main { @apply relative w-full h-full background }
+
+.background { background: url("/img/background.png") repeat center center /auto;}
